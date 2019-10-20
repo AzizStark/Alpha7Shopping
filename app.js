@@ -33,15 +33,15 @@ app.get('/', (req, res) => {
   if (req.session.token || req.session.islogged === true) {
     req.session.islogged = true;
     res.cookie('token', req.session.token);
-    res.cookie('guser', req.session.profile);
-    res.redirect('/dashboard');
+    res.cookie('guser', req.user);
+    res.json(req.user);
+    //res.redirect('/dashboard');
   } else {
     res.cookie('token', '')
-    //res.redirect('/login');
+    res.redirect('/login');
     /*res.json({
       status: 'session cookie not set'
     });*/
-    res.json(req.user);
   }
 });
 
