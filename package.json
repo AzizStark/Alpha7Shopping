@@ -13,6 +13,7 @@
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "express-react-views": "^0.11.0",
+    "express-session": "^1.17.0",
     "http-errors": "~1.6.3",
     "mongodb": "^3.3.3",
     "monk": "^7.1.1",

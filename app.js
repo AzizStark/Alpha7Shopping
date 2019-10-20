@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+var session = require('express-session');
 //mongo
 //var monk = require('monk');
 //var db = monk('mongodb+srv://AzizStark:<password>@cluster0-bwssb.gcp.mongodb.net/test?retryWrites=true&w=majority');
@@ -24,6 +24,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({secret: "Shh, its a secret!"}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 

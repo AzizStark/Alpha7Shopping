@@ -10,6 +10,17 @@ router.get('/helloworld', function (req, res) {
   res.render('helloworld', { title: 'Alpha 7 Shopping' });
 });
 
+
+router.get('/session', function(req, res){
+  if(req.session.page_views){
+     req.session.page_views++;
+     res.send("You visited this page " + req.session.page_views + " times");
+  } else {
+     req.session.page_views = 1;
+     res.send("Welcome to this page for the first time!");
+  }
+});
+
 /* GET Userlist page. */
 router.get('/userlist', function (req, res) {
   var dbo = req.dbo;
