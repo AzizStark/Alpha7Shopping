@@ -32,15 +32,9 @@ app.use(cookieSession({
 app.get('/', (req, res) => {
   if (req.session.token) {
     res.cookie('token', req.session.token);
-    res.json({
-      status: 'session cookie set'
-    });
     res.redirect('/dashboard');
   } else {
     res.cookie('token', '')
-    res.json({
-      status: 'session cookie not set'
-    });
     res.redirect('/login');
   }
 });
