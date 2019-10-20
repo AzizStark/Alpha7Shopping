@@ -14,7 +14,8 @@ module.exports = (passport) => {
         (token, refreshToken, profile, done) => {
             return done(null, {
                 profile: profile,
-                token: token
+                token: token,
+                email: profile.emails[0].value
             });
         }));
 };
