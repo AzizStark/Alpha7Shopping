@@ -1,7 +1,9 @@
 var createError = require('http-errors');
 var express = require('express'),
-    passport = require('passport'),
-    auth = require('./auth');
+  passport = require('passport'),
+  auth = require('./auth'),
+  cookieParser = require('cookie-parser'),
+  cookieSession = require('cookie-session');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -22,20 +24,42 @@ var app = express();
 
 auth(passport);
 app.use(passport.initialize());
-app.get('/', (req, res) => {
-    res.json({
-        status: 'session cookie not set'
-    });
-});
-app.get('/auth/google', passport.authenticate('google', {
-    scope: ['https://www.googleapis.com/auth/userinfo.profile']
+app.use(cookieSession({
+  name: 'session',
+  keys: ['123']
 }));
+
+app.get('/', (req, res) => {
+  if (req.session.token) {
+    res.cookie('token', req.session.token);
+    res.json({
+      status: 'session cookie set'
+    });
+  } else {
+    res.cookie('token', '')
+    res.json({
+      status: 'session cookie not set'
+    });
+  }
+});
+
+app.get('/auth/google', passport.authenticate('google', {
+  scope: ['https://www.googleapis.com/auth/userinfo.profile']
+}));
+
 app.get('/auth/google/callback',
-    passport.authenticate('google', {
-        failureRedirect: '/'
-    }),
-    (req, res) => {}
+  passport.authenticate('google', { failureRedirect: '/' }),
+  (req, res) => {
+    req.session.token = req.user.token;
+    res.redirect('/');
+  }
 );
+
+app.get('/logout', (req, res) => {
+  req.logout();
+  req.session = null;
+  res.redirect('/');
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -44,8 +68,9 @@ app.engine('jsx', require('express-react-views').createEngine());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
 app.use(cookieParser());
-app.use(session({ secret: "Shh, its a secret!" , cookie: {expires: 600000}}));
+app.use(session({ secret: "Shh, its a secret!", cookie: { expires: 600000 } }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
