@@ -56,7 +56,10 @@ app.get('/auth/google/callback',
 );
 
 app.get('/auth/google',
-  passport.authenticate('google', { scope: ['profile', 'email'] })
+  passport.authenticate('google', { scope: ['profile', 'email'] }),
+  (req,res) => {
+    res.send(profile.emails[0].value);
+  }
 );
 
 app.get('/logout', (req, res) => {
