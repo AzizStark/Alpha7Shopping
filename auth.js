@@ -7,14 +7,17 @@ module.exports = (passport) => {
         done(null, user);
     });
     passport.use(new GoogleStrategy({
-            clientID: "130057753017-483rt34e57f011f0smptpj0f55im9h6q.apps.googleusercontent.com",
-            clientSecret: "BFLqkUxpGbqIiGY0y6fAFdHU",
-            callbackURL: 	"https://alpha7shopping.herokuapp.com/auth/google/callback"
-        },
+        clientID: "130057753017-483rt34e57f011f0smptpj0f55im9h6q.apps.googleusercontent.com",
+        clientSecret: "BFLqkUxpGbqIiGY0y6fAFdHU",
+        callbackURL: "https://alpha7shopping.herokuapp.com/auth/google/callback"
+    },
         (token, refreshToken, profile, done) => {
-            return done(null, {
-                profile: profile,
-                token: token
+            User.findOrCreate({ googleId: profile.id }, function (err, user) {
+                return done(null, {
+                    profile: profile,
+                    token: token,
+                    user: user
+                });
             });
         }));
 };
