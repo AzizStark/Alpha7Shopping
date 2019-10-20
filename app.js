@@ -33,9 +33,7 @@ app.get('/', (req, res) => {
   if (req.session.token || req.session.islogged === true) {
     req.session.islogged = true;
     res.cookie('token', req.session.token);
-    res.cookie('guser', req.session.user);
-    res.json(req.session.user);
-    //res.redirect('/dashboard');
+    res.redirect('/dashboard');
   } else {
     res.cookie('token', '')
     res.redirect('/login');
@@ -55,6 +53,10 @@ app.get('/auth/google/callback',
     req.session.token = req.user.token;
     res.redirect('/');
   }
+);
+
+app.get('/auth/google',
+  passport.authenticate('google', { scope: ['profile', 'email'] })
 );
 
 app.get('/logout', (req, res) => {
