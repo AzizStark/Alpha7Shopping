@@ -36,10 +36,10 @@ app.get('/', (req, res) => {
     res.redirect('/dashboard');
   } else {
     res.cookie('token', '')
-    //res.redirect('/login');
-    res.json({
+    res.redirect('/login');
+    /*res.json({
       status: 'session cookie not set'
-    });
+    });*/
   }
 });
 

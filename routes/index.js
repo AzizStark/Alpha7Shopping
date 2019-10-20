@@ -28,7 +28,7 @@ router.get('/login', function (req, res) {
 });
 
 router.get('/dashboard', function (req, res) {
-  if (req.session.islogged === true) {
+  if (req.session.islogged === true || req.session.token) {
     res.render('dashboard', { user: req.session.loggeduser });
   }
   else{
