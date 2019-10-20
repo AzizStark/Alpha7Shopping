@@ -13,7 +13,6 @@ module.exports = (passport) => {
         },
         (token, refreshToken, email, done) => {
             return done(null, {
-                profile: profile,
                 token: token,
                 email: email
             });
