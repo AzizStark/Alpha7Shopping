@@ -3,7 +3,7 @@ var React = require('react');
 class IndexPage extends React.Component {
   render() {
     return (
-    <body><div>Hello {this.props.title} HEHE and {this.props.titles}</div>
+    <body><div>Hello {this.props.title} Welcome to Alpha7Shopping {this.props.titles} !</div>
     </body>
     );
   }
