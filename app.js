@@ -56,13 +56,9 @@ app.get('/auth/google/callback',
   }
 );
 
-app.get('/auth/google',
-  passport.authenticate('google', { scope: ['profile', 'email'] }),
-  (req,res) => {
-    req.session.email = req.user.email;
-    res.send(profile.emails[0].value);
-  }
-);
+app.get('/auth/google', passport.authenticate('google', {
+  scope: ['https://www.googleapis.com/auth/userinfo.profile']
+}));
 
 app.get('/logout', (req, res) => {
   req.session.islogged = false;
