@@ -3,11 +3,11 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { titles: 'Express Aziz' });
 });
 
 router.get('/helloworld', function (req, res) {
-  res.render('helloworld', { title: 'Hello, World!' });
+  res.render('helloworld', { title: 'Alpha 7 Shopping' });
 });
 
 /* GET Userlist page. */
