@@ -12,7 +12,10 @@ class UserSignup extends React.Component {
           <input id="inputUserEmail" type="password" placeholder="password" name="password" /> < br/>
           <button id="btnSubmit" type="submit">Login</button>
        </form>
-       <form id="redirect" name="redirect" method="get" action="/signup">
+       <form id="redirect" name="redirect" method="get" action="/auth/google">
+       <button>Signin with google</button>
+       </form>
+       <form id="oauth" name="oauth" method="get" action="/signup">
        <button>Sign Up</button>
        </form>
       </html>
