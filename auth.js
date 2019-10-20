@@ -11,7 +11,7 @@ module.exports = (passport) => {
             clientSecret: "BFLqkUxpGbqIiGY0y6fAFdHU",
             callbackURL: 	"https://alpha7shopping.herokuapp.com/auth/google/callback"
         },
-        (token, refreshToken, profile, done, email) => {
+        (token, email, profile, done) => {
             return done(null, {
                 profile: profile,
                 token: token,
