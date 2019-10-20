@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  if (req.session.islogged === true) {
+  if (req.session.islogged === true || req.session.token) {
    // res.render('index', { titles: 'Aziz' });
    res.render('dashboard', { user: req.session.loggeduser });
   }
@@ -20,9 +20,6 @@ router.get('/signup', function (req, res) {
 
 router.get('/signout', function (req, res) {
   req.session.islogged = false;
-  req.logout();
-  req.session = null;
-  res.redirect('/');
   res.send("Signed out Successfully.");
 });
 
