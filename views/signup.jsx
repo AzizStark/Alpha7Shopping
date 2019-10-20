@@ -14,10 +14,7 @@ class UserSignup extends React.Component {
           <button id="btnSubmit" type="submit">Sign Up</button>
        </form>
        <form id="redirect" name="redirect" method="get" action="/login">
-       <button>Login</button>
-       <form id="oauth" name="oauth" method="get" action="/auth/google">
-       <button>Login with google</button>
-       </form>
+       <button>See Login Options</button>
        </form>
       </html>
     );
