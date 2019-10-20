@@ -54,7 +54,7 @@ app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
     req.session.token = req.user.token;
-    req.session.gname = req.user.profile.name.givenName;
+    //req.session.gname = req.user.profile.name.givenName;
     req.session.gmail = req.user.email;
     res.redirect('/');
   }
