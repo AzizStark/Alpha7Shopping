@@ -26,7 +26,8 @@ auth(passport);
 app.use(passport.initialize());
 app.use(cookieSession({
   name: 'session',
-  keys: ['123']
+  keys: ['BFLqkUxpGbqIiGY0y6fAFdHU'],
+  maxAge: 24 * 60 * 60 * 1000
 }));
 
 app.get('/', (req, res) => {
