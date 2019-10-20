@@ -35,11 +35,13 @@ app.get('/', (req, res) => {
     res.json({
       status: 'session cookie set'
     });
+    res.redirect('/dashboard');
   } else {
     res.cookie('token', '')
     res.json({
       status: 'session cookie not set'
     });
+    res.redirect('/login');
   }
 });
 
