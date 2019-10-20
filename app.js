@@ -31,11 +31,15 @@ app.use(cookieSession({
 
 app.get('/', (req, res) => {
   if (req.session.token) {
+    req.session.islogged = true;
     res.cookie('token', req.session.token);
     res.redirect('/dashboard');
   } else {
     res.cookie('token', '')
-    res.redirect('/login');
+    //res.redirect('/login');
+    res.json({
+      status: 'session cookie not set'
+    });
   }
 });
 
@@ -52,6 +56,7 @@ app.get('/auth/google/callback',
 );
 
 app.get('/logout', (req, res) => {
+  req.session.islogged = false;
   req.logout();
   req.session = null;
   res.redirect('/');
