@@ -30,7 +30,7 @@ app.use(cookieSession({
 }));
 
 app.get('/', (req, res) => {
-  if (req.session.token) {
+  if (req.session.token || req.session.islogged === true) {
     req.session.islogged = true;
     res.cookie('token', req.session.token);
     res.redirect('/dashboard');
