@@ -20,7 +20,11 @@ router.get('/signup', function (req, res) {
 
 router.get('/signout', function (req, res) {
   req.session.islogged = false;
+  req.session.islogged = false;
+  req.logout();
+  req.session = null;
   res.send("Signed out Successfully.");
+  res.redirect('/');
 });
 
 router.get('/login', function (req, res) {
