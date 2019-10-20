@@ -34,7 +34,8 @@ app.get('/', (req, res) => {
   if (req.session.token || req.session.islogged === true) {
     req.session.islogged = true;
     res.cookie('token', req.session.token);
-    res.cookie('mail', req.session.email);
+    res.cookie('gname', req.session.gname);
+    res.cookie('gmail', req.session.gmail);
     res.redirect('/dashboard');
   } else {
     res.cookie('token', '')
@@ -46,14 +47,15 @@ app.get('/', (req, res) => {
 });
 
 app.get('/auth/google', passport.authenticate('google', {
-  scope: ['https://www.googleapis.com/auth/userinfo.profile']
+  scope: ['https://www.googleapis.com/auth/userinfo.profile','https://www.googleapis.com/auth/userinfo.email']
 }));
 
 app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
     req.session.token = req.user.token;
-    req.session.email = req.user.profile.name.givenName;
+    req.session.gname = req.user.profile.name.givenName;
+    req.session.gmail = req.user.email;
     res.redirect('/');
   }
 );
