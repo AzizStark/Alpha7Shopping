@@ -1,9 +1,12 @@
 var React = require('react');
 
-class HelloMessage extends React.Component {
+class IndexPage extends React.Component {
   render() {
-    return <div>Hello {this.props.name}</div>;
+    return (
+    <body><div>Hello {this.props.title} HEHE and {this.props.titles}</div>
+    </body>
+    );
   }
 }
 
-module.exports = HelloMessage;
+module.exports = IndexPage;
