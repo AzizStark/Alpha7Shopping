@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
   if (req.session.token || req.session.islogged === true) {
     req.session.islogged = true;
     res.cookie('token', req.session.token);
-    res.cookie('gname', req.session.gname);
+    res.cookie('loggeduser', req.session.loggeduser);
     res.cookie('gmail', req.session.gmail);
     res.redirect('/dashboard');
   } else {
@@ -54,7 +54,7 @@ app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
     req.session.token = req.user.token;
-    req.session.gname = req.user.email.name.givenName;
+    req.session.loggeduser = req.user.email.name.givenName;
     req.session.gmail = req.user.email.emails[0].value;
     res.redirect('/');
   }
