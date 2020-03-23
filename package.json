@@ -19,7 +19,7 @@
     "http-errors": "~1.6.3",
     "lodash": "^4.17.15",
     "mongodb": "^3.3.3",
-    "monk": "^7.1.1",
+    "monk": "^7.1.2",
     "morgan": "~1.9.1",
     "passport": "^0.4.0",
     "passport-google-oauth": "^2.0.0",
