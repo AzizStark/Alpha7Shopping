@@ -16,7 +16,7 @@
     "express-react-views": "^0.11.0",
     "express-session": "^1.17.0",
     "express-validator": "^6.2.0",
-    "http-errors": "~1.6.3",
+    "http-errors": "~1.8.0",
     "lodash": "^4.17.15",
     "mongodb": "^3.3.3",
     "monk": "^7.1.1",
